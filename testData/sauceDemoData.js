@@ -1,4 +1,4 @@
-export const users = {
+const users = {
     standardUser: {
         username: 'standard_user',
         password: 'secret_sauce'
@@ -13,7 +13,7 @@ export const users = {
     }
 };
 
-export const expectedValues = {
+const expectedValues = {
     baseUrl: 'https://www.saucedemo.com',
     inventoryUrl: 'https://www.saucedemo.com/inventory.html',
     pageTitle: 'Products',
@@ -22,3 +22,5 @@ export const expectedValues = {
     errorEmptyUsername: 'Username is required',
     errorEmptyPassword: 'Password is required'
 };
+
+module.exports = { users, expectedValues };

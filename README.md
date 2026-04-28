@@ -1,31 +1,31 @@
-# SauceDemo Login Automation - Advanced
+# SauceDemo Login Automation - Selenium Mocha
 
-Project Web UI Automation Advanced untuk website [SauceDemo](https://www.saucedemo.com), fokus pada **skenario login** dan implementasi **hooks** menggunakan WebdriverIO & Mocha.
+Project Web UI Automation Advanced untuk website [SauceDemo](https://www.saucedemo.com), menggunakan **Selenium WebDriver** dan **Mocha**.
 
 ## Tech Stack
 
 | Tool | Fungsi |
 |------|--------|
-| [WebdriverIO v9](https://webdriver.io/) | Framework UI Automation |
-| [Mocha](https://mochajs.org/) | Test Framework |
-| [ChromeDriver](https://chromedriver.chromium.org/) | Driver untuk Chrome |
-| [Allure Reporter](https://webdriver.io/docs/allure-reporter/) | Laporan hasil test |
+| [Selenium WebDriver](https://www.selenium.dev/documentation/webdriver/) | Browser Automation Library |
+| [Mocha](https://mochajs.org/) | Test Framework / Runner |
+| [Chai](https://www.chaijs.com/) | Assertion Library |
+| [Mochawesome](https://adamgruber.github.io/mochawesome/) | HTML Reporting |
 
 ## Struktur Project
 
 ```
 10. WebUI Automation Advanced Part 1/
 ├── pageObjects/
-│   └── LoginPage.js        # Page Object Model untuk halaman Login
+│   └── LoginPage.js        # Page Object Model (Selenium Syntax)
 ├── testData/
 │   └── sauceDemoData.js    # Data uji (username, password, expected values)
 ├── tests/
 │   └── login/
 │       └── login.test.js   # Test suite dengan 6 skenario + hooks
+├── mochawesome-report/     # Laporan hasil test (Generated after npm test)
 ├── .gitignore
 ├── package.json
-├── README.md
-└── wdio.conf.js            # Konfigurasi WebdriverIO + WDIO-level hooks
+└── README.md
 ```
 
 ## Skenario Test
@@ -39,41 +39,25 @@ Project Web UI Automation Advanced untuk website [SauceDemo](https://www.saucede
 | TC-05 | Login gagal - password kosong | Muncul pesan error password required |
 | TC-06 | Logout setelah login sukses | Kembali ke halaman login |
 
-## Hooks yang Diimplementasikan
-
-### Mocha Hooks (dalam test file)
+## Hooks yang Diimplementasikan (Mocha Hooks)
 
 | Hook | Kapan Dijalankan | Kegunaan |
 |------|-----------------|----------|
-| `before()` | 1x sebelum semua test | Setup awal suite (log info) |
-| `beforeEach()` | Sebelum tiap test | Buka halaman login (reset kondisi) |
-| `afterEach()` | Setelah tiap test | Screenshot jika gagal, cleanup |
-| `after()` | 1x setelah semua test | Cleanup akhir, log summary |
-
-### WDIO Hooks (dalam wdio.conf.js)
-
-| Hook | Kapan Dijalankan |
-|------|-----------------|
-| `onPrepare` | Sebelum seluruh test suite dimulai |
-| `before` | Sebelum worker process diluncurkan |
-| `after` | Setelah seluruh test selesai |
-| `onComplete` | Setelah test suite selesai sepenuhnya |
+| `beforeEach()` | Sebelum tiap test | Inisialisasi Driver & Buka halaman login |
+| `afterEach()` | Setelah tiap test | Menutup Driver & Log status |
 
 ## Cara Menjalankan
 
-### Install dependencies
+### 1. Install dependencies
 ```bash
 npm install
 ```
 
-### Jalankan semua test
+### 2. Jalankan semua test
 ```bash
 npm test
 ```
 
-## Data Login SauceDemo
-
-| Username | Password | Keterangan |
-|----------|----------|------------|
-| `standard_user` | `secret_sauce` | User valid |
-| `locked_out_user` | `secret_sauce` | User terkunci |
+### 3. Melihat Laporan
+Setelah test selesai, buka file berikut di browser :
+`mochawesome-report/mochawesome.html`

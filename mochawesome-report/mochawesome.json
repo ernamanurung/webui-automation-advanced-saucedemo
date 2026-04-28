@@ -1,0 +1,233 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 6,
+    "passes": 6,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-04-28T15:54:52.550Z",
+    "end": "2026-04-28T15:55:06.269Z",
+    "duration": 13719,
+    "testsRegistered": 6,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "af6fb746-70ce-4bea-8400-dd147798eac8",
+      "title": "",
+      "fullFile": "D:\\10. BOOTCAMP\\Digital Skola-QA\\10. WebUI Automation Advanced Part 1\\tests\\login\\login.test.js",
+      "file": "\\tests\\login\\login.test.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "d92f104d-46fc-4b56-b33f-62fc8f115baa",
+          "title": "Login SauceDemo",
+          "fullFile": "D:\\10. BOOTCAMP\\Digital Skola-QA\\10. WebUI Automation Advanced Part 1\\tests\\login\\login.test.js",
+          "file": "\\tests\\login\\login.test.js",
+          "beforeHooks": [
+            {
+              "title": "\"before each\" hook in \"Login SauceDemo\"",
+              "fullTitle": "Login SauceDemo \"before each\" hook in \"Login SauceDemo\"",
+              "timedOut": false,
+              "duration": 1766,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "console.log('\\n▶️  [beforeEach] Memulai test case...');\nconsole.log('Sebelum test');\ndriver = await new Builder().forBrowser('chrome').build();\nawait LoginPage.open(driver);",
+              "err": {},
+              "uuid": "a4a85a22-138d-4dbf-9e0e-652d62c429a3",
+              "parentUUID": "d92f104d-46fc-4b56-b33f-62fc8f115baa",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"Login SauceDemo\"",
+              "fullTitle": "Login SauceDemo \"after each\" hook in \"Login SauceDemo\"",
+              "timedOut": false,
+              "duration": 96,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "console.log('Setelah test');\nif (driver) {\n    await driver.quit();\n}",
+              "err": {},
+              "uuid": "052ac2e4-b669-4c80-8533-0a9af4258fe8",
+              "parentUUID": "d92f104d-46fc-4b56-b33f-62fc8f115baa",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "[Sanity] TC-01 | Login sukses dengan kredensial valid",
+              "fullTitle": "Login SauceDemo [Sanity] TC-01 | Login sukses dengan kredensial valid",
+              "timedOut": false,
+              "duration": 486,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await LoginPage.login(\n    driver,\n    users.standardUser.username,\n    users.standardUser.password\n);\n\n// Tunggu URL berubah\nawait driver.wait(async () => {\n    const url = await driver.getCurrentUrl();\n    return url.includes('inventory.html');\n}, 5000);\nconst currentUrl = await driver.getCurrentUrl();\nexpect(currentUrl).to.equal(expectedValues.inventoryUrl);\n\nconst title = await LoginPage.getPageTitle(driver);\nexpect(title).to.equal(expectedValues.pageTitle);",
+              "err": {},
+              "uuid": "cb8c9a5b-4a8a-48e0-8a3d-f2e7a9c1a0e6",
+              "parentUUID": "d92f104d-46fc-4b56-b33f-62fc8f115baa",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "TC-02 | Login gagal - password salah",
+              "fullTitle": "Login SauceDemo TC-02 | Login gagal - password salah",
+              "timedOut": false,
+              "duration": 468,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await LoginPage.login(\n    driver,\n    users.standardUser.username,\n    users.invalidUser.password\n);\nconst errorMsg = await LoginPage.getErrorMessage(driver);\nexpect(errorMsg).to.contain(expectedValues.errorInvalidCredentials);",
+              "err": {},
+              "uuid": "72c7e6ef-b4dd-43d2-93c0-4d5e1552bc52",
+              "parentUUID": "d92f104d-46fc-4b56-b33f-62fc8f115baa",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "TC-03 | Login gagal - akun terkunci (locked out user)",
+              "fullTitle": "Login SauceDemo TC-03 | Login gagal - akun terkunci (locked out user)",
+              "timedOut": false,
+              "duration": 435,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await LoginPage.login(\n    driver,\n    users.lockedUser.username,\n    users.lockedUser.password\n);\nconst errorMsg = await LoginPage.getErrorMessage(driver);\nexpect(errorMsg).to.contain(expectedValues.errorLockedUser);",
+              "err": {},
+              "uuid": "2310e35c-c0b0-4d80-9a61-8e37dbd37f3a",
+              "parentUUID": "d92f104d-46fc-4b56-b33f-62fc8f115baa",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "TC-04 | Login gagal - username kosong",
+              "fullTitle": "Login SauceDemo TC-04 | Login gagal - username kosong",
+              "timedOut": false,
+              "duration": 414,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await LoginPage.login(driver, '', users.standardUser.password);\nconst errorMsg = await LoginPage.getErrorMessage(driver);\nexpect(errorMsg).to.contain(expectedValues.errorEmptyUsername);",
+              "err": {},
+              "uuid": "6e34c94e-9ddf-4963-8d80-85a493eab0bd",
+              "parentUUID": "d92f104d-46fc-4b56-b33f-62fc8f115baa",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "TC-05 | Login gagal - password kosong",
+              "fullTitle": "Login SauceDemo TC-05 | Login gagal - password kosong",
+              "timedOut": false,
+              "duration": 416,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await LoginPage.login(driver, users.standardUser.username, '');\nconst errorMsg = await LoginPage.getErrorMessage(driver);\nexpect(errorMsg).to.contain(expectedValues.errorEmptyPassword);",
+              "err": {},
+              "uuid": "6599c5be-ef50-4f9a-8fc0-2a991545af47",
+              "parentUUID": "d92f104d-46fc-4b56-b33f-62fc8f115baa",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "TC-06 | Logout berhasil setelah login sukses",
+              "fullTitle": "Login SauceDemo TC-06 | Logout berhasil setelah login sukses",
+              "timedOut": false,
+              "duration": 601,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await LoginPage.login(\n    driver,\n    users.standardUser.username,\n    users.standardUser.password\n);\n\nawait driver.wait(async () => {\n    const url = await driver.getCurrentUrl();\n    return url.includes('inventory.html');\n}, 5000);\nawait LoginPage.logout(driver);\nawait driver.wait(async () => {\n    const url = await driver.getCurrentUrl();\n    return url === expectedValues.baseUrl + '/';\n}, 5000);\nconst currentUrl = await driver.getCurrentUrl();\nexpect(currentUrl).to.equal(expectedValues.baseUrl + '/');",
+              "err": {},
+              "uuid": "49ace596-7e36-4a18-a5f4-eac5afe4ee0e",
+              "parentUUID": "d92f104d-46fc-4b56-b33f-62fc8f115baa",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "cb8c9a5b-4a8a-48e0-8a3d-f2e7a9c1a0e6",
+            "72c7e6ef-b4dd-43d2-93c0-4d5e1552bc52",
+            "2310e35c-c0b0-4d80-9a61-8e37dbd37f3a",
+            "6e34c94e-9ddf-4963-8d80-85a493eab0bd",
+            "6599c5be-ef50-4f9a-8fc0-2a991545af47",
+            "49ace596-7e36-4a18-a5f4-eac5afe4ee0e"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 2820,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 60000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 60000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "10.8.2"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.3.2"
+    }
+  }
+}
