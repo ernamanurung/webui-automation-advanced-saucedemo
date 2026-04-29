@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "Project Web UI Automation Advanced - Selenium Mocha Digital Skola",
   "scripts": {
-    "test": "mocha specs --recursive --timeout 60000 --reporter mochawesome"
+    "test": "mocha tests/specs --recursive --timeout 60000 --reporter mochawesome"
   },
   "dependencies": {
     "fs-extra": "^11.3.4",
+    "pixelmatch": "^7.2.0",
+    "pngjs": "^7.0.0",
     "resemblejs": "^5.0.0",
     "selenium-webdriver": "^4.17.0"
   },
